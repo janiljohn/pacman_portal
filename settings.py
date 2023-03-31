@@ -4,9 +4,13 @@ class Settings():
     def __init__(self):
         """Initialize the game's settings."""
         # Screen settings
-        self.screen_width = 1200
-        self.screen_height = 800
+        self.screen_width = 800
+        self.screen_height = 680
         self.bg_color = (40, 40, 40)
+        self.black = (0, 0, 0)
+        self.pacmanspeed = 2
+        self.rectsize = 15
+        self.pacmansize = self.rectsize * 5
         
 # # TODO: test laser with a really wide laser
         self.laser_width = 5

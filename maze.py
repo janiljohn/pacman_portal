@@ -3,6 +3,7 @@ from wall import Wall
 from shield import Shield
 from fruit import Fruit
 from portal import Portal
+import random
 
 class Maze:
     def __init__(self, game, file):
@@ -38,12 +39,12 @@ class Maze:
 
         for row in rows:
             for el in row:
-                if el == 'X':
+                if el == 'W':
                     new_wall = Wall(self.game)
                     new_wall.rect.x = 13 * offset_horizontal
                     new_wall.rect.y = 13 * offset_vertical
                     (self.game.walls).add(new_wall)
-                elif el == 'd':
+                elif el == 'f':
                     new_fruit = Fruit(self.game)
                     new_fruit.rect.x = 13 * offset_horizontal
                     new_fruit.rect.y = 13 * offset_vertical
@@ -60,8 +61,84 @@ class Maze:
                     new_portal.rect.x = 13 * offset_horizontal
                     new_portal.rect.y = 13 * offset_vertical
                     (self.game.portal).add(new_portal)
+                    (self.game.portal_list).append(new_portal)
                 offset_horizontal += 1
             offset_horizontal = 0
             offset_vertical += 1
 
+    def check_collisions(self):
+        for wall in self.game.walls:
+            if pg.sprite.collide_rect(self.game.pacman, wall):
+                self.check_pacman_wall_collisions(wall)
+        for shield in self.game.shield:
+            if pg.sprite.collide_rect(self.game.pacman, shield):
+                self.check_pacman_shield_collisions(shield)
+        for food in self.game.food:
+            if pg.sprite.collide_rect(self.game.pacman, food):
+                print("Eaten")
+                (self.game.food).remove(food)
+        for portal in self.game.portal:
+            if pg.sprite.collide_rect(self.game.pacman, portal):
+                print(self.game.pacman.rect.x)
+                print(self.game.pacman.rect.y)
+                print()
+                if self.game.pacman.rect.x>=536 and self.game.pacman.rect.x<=580:
+                    print("HI")
+                    print(self.game.portal_pairs["Portal_0"][0])
+                    print(self.game.portal_pairs["Portal_0"][1])
+                    self.game.pacman.x = self.game.portal_pairs["Portal_0"][0]
+                    self.game.pacman.y = self.game.portal_pairs["Portal_0"][1]
+                elif self.game.pacman.rect.x>=20 and self.game.pacman.rect.x<=91:
+                    self.game.pacman.x = self.game.portal_pairs["Portal_1"][0]
+                    self.game.pacman.y = self.game.portal_pairs["Portal_1"][1]
+                elif self.game.pacman.rect.x>=99 and self.game.pacman.rect.x<=160:
+                    self.game.pacman.x = self.game.portal_pairs["Portal_2"][0]
+                    self.game.pacman.y = self.game.portal_pairs["Portal_2"][1]
+                elif self.game.pacman.rect.x>=279 and self.game.pacman.rect.x<=360:
+                    self.game.pacman.x = self.game.portal_pairs["Portal_3"][0]
+                    self.game.pacman.y = self.game.portal_pairs["Portal_3"][1]
+
+    def check_pacman_wall_collisions(self, wall):
+        if self.game.pacman.rect.centerx <= wall.rect.centerx:
+            self.game.pacman.x -= 1
+        else:
+            self.game.pacman.x += 1
+        if self.game.pacman.rect.y + self.game.pacman.rect.height / 2 <= wall.rect.y + wall.rect.height / 2:
+            self.game.pacman.y -= 1
+        else:
+            self.game.pacman.y += 1
+
+        # left = False
+        # right = False
+        # up = False
+        # down = False
+        # if self.game.pacman.rect.centerx <= wall.rect.centerx:
+        #     right = True
+        # else:
+        #     left = True
+        # if self.game.pacman.rect.y + self.game.pacman.rect.height / 2 <= wall.rect.y + wall.rect.height / 2:
+        #     up = True
+        # else:
+        #     down = True
+
+        # if left:
+        #     self.game.pacman.x += 5
+        # elif right:
+        #     print("HI")
+        #     self.game.pacman.x -= 5
+        # if up:
+        #     self.game.pacman.y -= 2
+        # elif down:
+        #     self.game.pacman.y += 2
+
+    def check_pacman_shield_collisions(self, shield):
+        if self.game.pacman.rect.centerx <= shield.rect.centerx:
+            self.game.pacman.x -= 1
+        else:
+            self.game.pacman.x += 1
+        if self.game.pacman.rect.y + self.game.pacman.rect.height / 2 <= shield.rect.y + shield.rect.height / 2:
+            self.game.pacman.y -= 1
+        else:
+            self.game.pacman.y += 1
+        
 
