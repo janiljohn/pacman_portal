@@ -1,6 +1,6 @@
  WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
  W.....................WW.....................W
- W.f.f.f.f.f.f.f.f.f.f.WW.f.f.f.f.f.f.f.f.f.f.P
+ W.p.f.f.f.f.f.f.f.f.f.WW.f.f.f.f.f.f.f.f.f.p.P
  W.....................WW.....................W
  W.f.WWWWW.f.WWWWWWW.f.WW.f.WWWWWWW.f.WWWWW.f.W
  W...WWWWW...WWWWWWW...WW...WWWWWWW...WWWWW...W
@@ -41,7 +41,7 @@
  WWWW...WW...WW...WWWWWWWWWWWW...WW...WW.f.WWWW
  WWWW.f.WW.f.WW.f.WWWWWWWWWWWW.f.WW.f.WW...WWWW
  W...........WW........WW........WW...........W
- W.f..f.f..f.WW.f..f.f.WW.f.f..f.WW.f.f..f..f.W
+ W.p..f.f..f.WW.f..f.f.WW.f.f..f.WW.f.f..f..p.W
  W...........WW........WW........WW...........W
  W.f.WWWWWWWWWWWWWWW.f.WW.f.WWWWWWWWWWWWWWW.f.W
  W...WWWWWWWWWWWWWWW...WW...WWWWWWWWWWWWWWW...W

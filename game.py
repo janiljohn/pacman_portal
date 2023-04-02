@@ -7,6 +7,7 @@ from fruit import Fruit
 from settings import Settings
 from sound import Sound
 from scoreboard import Scoreboard
+from startup import StartUp
 import sys
 
 from pygame.sprite import Sprite, Group
@@ -24,6 +25,7 @@ class Game:
         self.scoreboard = Scoreboard(game=self)
 
         # self.maze = Maze(game=self, file="images/blank_maze.png")
+        self.startup = StartUp(self.screen, self.settings)
         self.maze = Maze(game=self, file="images/maze_with_points.png")
         self.ghosts = Ghosts(game=self)
         self.fruit = Fruit(game=self)
@@ -51,6 +53,9 @@ class Game:
         self.portal_pairs["Portal_2"] = (561,25)
         self.portal_pairs["Portal_3"] = (42,96)
 
+        self.startup.createScreen(self.screen)
+        self.scoreboard.prep_score()
+        self.scoreboard.draw()
 
     def restart(self): pass
 

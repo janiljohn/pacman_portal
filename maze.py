@@ -3,6 +3,7 @@ from wall import Wall
 from shield import Shield
 from fruit import Fruit
 from portal import Portal
+from powerpill import PowerPill
 import random
 
 class Maze:
@@ -62,6 +63,11 @@ class Maze:
                     new_portal.rect.y = 13 * offset_vertical
                     (self.game.portal).add(new_portal)
                     (self.game.portal_list).append(new_portal)
+                elif el == 'p':
+                    new_powerpill = PowerPill(self.game)
+                    new_powerpill.rect.x = 13 * offset_horizontal
+                    new_powerpill.rect.y = 13 * offset_vertical
+                    (self.game.food).add(new_powerpill)
                 offset_horizontal += 1
             offset_horizontal = 0
             offset_vertical += 1
@@ -107,29 +113,6 @@ class Maze:
             self.game.pacman.y -= 1
         else:
             self.game.pacman.y += 1
-
-        # left = False
-        # right = False
-        # up = False
-        # down = False
-        # if self.game.pacman.rect.centerx <= wall.rect.centerx:
-        #     right = True
-        # else:
-        #     left = True
-        # if self.game.pacman.rect.y + self.game.pacman.rect.height / 2 <= wall.rect.y + wall.rect.height / 2:
-        #     up = True
-        # else:
-        #     down = True
-
-        # if left:
-        #     self.game.pacman.x += 5
-        # elif right:
-        #     print("HI")
-        #     self.game.pacman.x -= 5
-        # if up:
-        #     self.game.pacman.y -= 2
-        # elif down:
-        #     self.game.pacman.y += 2
 
     def check_pacman_shield_collisions(self, shield):
         if self.game.pacman.rect.centerx <= shield.rect.centerx:

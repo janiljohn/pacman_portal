@@ -31,6 +31,15 @@ class Scoreboard:
         self.score_rect.right = self.screen_rect.right - 20
         self.score_rect.top = 20
 
+    def prep_level(self): 
+        level_str = "Level: " + str(self.level)
+        self.level_image = self.font.render(level_str, True, self.text_color, self.settings.bg_color)
+
+        # Display the level at the top right of the screen.
+        self.level_rect = self.level_image.get_rect()
+        self.level_rect.right = self.screen_rect.right - 20
+        self.level_rect.top = 50
+
     def reset(self): 
         self.score = 0
         self.update()
