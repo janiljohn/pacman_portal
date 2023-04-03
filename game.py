@@ -35,9 +35,9 @@ class Game:
         pg.display.set_caption("Pacman Portal")
 
         self.sound = Sound(bg_music="sounds/startrek.wav")
-        self.play_button = Button( "Play", game=self, offsety=200)
-        self.hs_button = Button( "High Score", game=self, offsety=280)
-        self.back_button = Button( "Back", game=self, offsety=280)
+        self.play_button = Button( "Play", game=self, movey=200)
+        self.hs_button = Button( "High Score", game=self, movey=280)
+        self.back_button = Button( "Back", game=self, movey=280)
         self.hs = HighScore(game=self)
         self.scoreboard = Scoreboard(game=self)
 
