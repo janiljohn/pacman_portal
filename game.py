@@ -49,8 +49,8 @@ class Game:
         self.portal_pairs["Portal_3"] = (42,96)
 
         self.startup.createScreen(self.screen)
-        self.scoreboard.prep_score()
-        self.scoreboard.draw()
+        # self.scoreboard.prep_score()
+        # self.scoreboard.draw()
 
     def restart(self): pass
 
@@ -97,17 +97,11 @@ class Game:
         while True:
             self.screen.fill(self.settings.black)
             self.handle_events()
-            # self.screen.fill(self.settings.bg_color)
-            # self.maze.update()
-            # print(self.pacman.rect.x)
-            # print(self.pacman.rect.y)
-            # print()
             self.ghosts.update()
             self.pacman.update()
             self.fruit.update()
             self.maze.check_collisions()
-            # self.pacman.draw()
-            # self.scoreboard.update()
+            self.scoreboard.update()
             for wall in self.walls:
                 wall.draw()
             if(pg.time.get_ticks()<3500):
@@ -117,8 +111,6 @@ class Game:
                 el.draw()
             for el in self.portal:
                 el.draw()
-            # if(pg.time.get_ticks()>2000):
-            #     self.shield.remove()
             pg.display.flip()
 
 

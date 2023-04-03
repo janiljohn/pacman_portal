@@ -76,13 +76,21 @@ class Maze:
         for wall in self.game.walls:
             if pg.sprite.collide_rect(self.game.pacman, wall):
                 self.check_pacman_wall_collisions(wall)
+            for ghost in self.game.ghosts.ghost_list:
+                if pg.sprite.collide_rect(ghost, wall):
+                    directions = ["Up", "Down", "Left", "Right"]
+                    ghost.direction = directions[random.randint(0,3)]
+
         for shield in self.game.shield:
             if pg.sprite.collide_rect(self.game.pacman, shield) and pg.time.get_ticks()<3500:
                 self.check_pacman_shield_collisions(shield)
         for food in self.game.food:
             if pg.sprite.collide_rect(self.game.pacman, food):
-                print("Eaten")
                 (self.game.food).remove(food)
+                self.game.scoreboard.increment_score()
+                if not self.game.food:
+                    self.populate_maze()
+                    self.game.scoreboard.next_level()
         for portal in self.game.portal:
             if pg.sprite.collide_rect(self.game.pacman, portal):
                 if self.game.pacman.rect.x>=536 and self.game.pacman.rect.x<=580:
