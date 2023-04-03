@@ -10,6 +10,8 @@ class Settings():
         self.rectsize = 15
         self.pacmansize = self.rectsize * 5
         self.food_points = 10
+        self.game_active = False
+        self.hs_active = False
 
 # # TODO: set a ship_limit of 3
         self.ship_limit = 3         # total ships allowed in game before game over

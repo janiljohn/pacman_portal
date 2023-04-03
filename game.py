@@ -34,7 +34,7 @@ class Game:
         self.screen = pg.display.set_mode(size=size)
         pg.display.set_caption("Pacman Portal")
 
-        # self.sound = Sound(bg_music="sounds/startrek.wav")
+        self.sound = Sound(bg_music="sounds/startrek.wav")
         self.play_button = Button( "Play", game=self, offsety=200)
         self.hs_button = Button( "High Score", game=self, offsety=280)
         self.back_button = Button( "Back", game=self, offsety=280)
@@ -42,7 +42,7 @@ class Game:
         self.scoreboard = Scoreboard(game=self)
 
         # self.maze = Maze(game=self, file="images/blank_maze.png")
-        self.startup = StartUp(self.screen, self.settings)
+        self.startup = StartUp(game=self)
         self.maze = Maze(game=self, file="images/maze_with_points.png")
         self.ghosts = Ghosts(game=self)
         self.fruit = Fruit(game=self)
@@ -58,14 +58,14 @@ class Game:
 
         self.portal_pairs = dict()
 
-        self.maze.populate_maze()
+    
 
         self.portal_pairs["Portal_0"] = (126,614)
         self.portal_pairs["Portal_1"] = (318,614)
         self.portal_pairs["Portal_2"] = (561,25)
         self.portal_pairs["Portal_3"] = (42,96)
 
-        self.startup.createScreen(self.screen)
+        self.startup.draw()
         # self.scoreboard.prep_score()
         # self.scoreboard.draw()
 
@@ -133,6 +133,7 @@ class Game:
     def check_play_button(self, mouse_x, mouse_y):
         button_clicked = self.play_button.rect.collidepoint(mouse_x, mouse_y)
         if button_clicked:
+            self.maze.populate_maze()
             self.settings.init_speeds()
             self.sound.play_bg()
             pg.mouse.set_visible(False)
@@ -153,7 +154,7 @@ class Game:
                 self.hs.update()
                 self.back_button.draw_button()
             else:
-                self.launch.update()
+                self.startup.update()
                 self.play_button.draw_button()
                 self.hs_button.draw_button()
 
@@ -163,20 +164,22 @@ class Game:
         while True:
             self.screen.fill(self.settings.black)
             self.handle_events()
-            self.ghosts.update()
-            self.pacman.update()
-            self.fruit.update()
-            self.maze.check_collisions()
-            self.scoreboard.update()
-            for wall in self.walls:
-                wall.draw()
-            if(pg.time.get_ticks()<3500):
-                for el in self.shield:
+            self.update_screen()
+            if self.settings.game_active:
+                self.ghosts.update()
+                self.pacman.update()
+                self.fruit.update()
+                self.maze.check_collisions()
+                self.scoreboard.update()
+                for wall in self.walls:
+                    wall.draw()
+                if(pg.time.get_ticks()<3500):
+                    for el in self.shield:
+                        el.draw()
+                for el in self.food:
                     el.draw()
-            for el in self.food:
-                el.draw()
-            for el in self.portal:
-                el.draw()
+                for el in self.portal:
+                    el.draw()
             pg.display.flip()
 
 
