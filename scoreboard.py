@@ -4,7 +4,7 @@ import pygame as pg
 class Scoreboard:
     def __init__(self, game): 
         self.curr_score = 0
-        self.curr_level = 1
+        self.curr_level = 0
         self.high_score = 0
         self.d = game.disk
         self.read_disk()
@@ -35,21 +35,21 @@ class Scoreboard:
         self.hs_3_lvl = self.d["hs_3_level"]
 
     def update_disk(self):
-        if self.score > self.hs_1:
-            self.d["hs_1_score"] = self.score
-            self.d["hs_1_level"] = self.level
+        if self.curr_score > self.hs_1:
+            self.d["hs_1_score"] = self.curr_score
+            self.d["hs_1_level"] = self.curr_level
             self.d["hs_2_score"] = self.hs_1
             self.d["hs_2_level"] = self.hs_1_lvl
             self.d["hs_3_score"] = self.hs_2
             self.d["hs_3_level"] = self.hs_2_lvl
-        elif self.score > self.hs_2:
-            self.d["hs_2_score"] = self.score
-            self.d["hs_2_level"] = self.level
+        elif self.curr_score > self.hs_2:
+            self.d["hs_2_score"] = self.curr_score
+            self.d["hs_2_level"] = self.curr_level
             self.d["hs_3_score"] = self.hs_2
             self.d["hs_3_level"] = self.hs_2_lvl
-        elif self.score > self.hs_3:
-            self.d["hs_3_score"] = self.score
-            self.d["hs_3_level"] = self.level
+        elif self.curr_score > self.hs_3:
+            self.d["hs_3_score"] = self.curr_score
+            self.d["hs_3_level"] = self.curr_level
 
     def increment_score(self): 
         self.curr_score += self.settings.food_points

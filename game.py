@@ -102,6 +102,26 @@ class Game:
                     pass
                 elif event.key == pg.K_QUIT:
                     sys.exit()
+            elif event.type == pg.MOUSEBUTTONDOWN:
+                self.check_buttons()
+            elif not self.settings.game_active:
+                hover = self.play_button.rect.collidepoint(pg.mouse.get_pos()[0], pg.mouse.get_pos()[1])
+                if hover:
+                    self.play_button.hover_on()
+                else:
+                    self.play_button.hover_off()
+
+                hover = self.hs_button.rect.collidepoint(pg.mouse.get_pos()[0], pg.mouse.get_pos()[1])
+                if hover:
+                    self.hs_button.hover_on()
+                else:
+                    self.hs_button.hover_off()
+
+                hover = self.back_button.rect.collidepoint(pg.mouse.get_pos()[0], pg.mouse.get_pos()[1])
+                if hover:
+                    self.back_button.hover_on()
+                else:
+                    self.back_button.hover_off()
 
 
     def game_over(self):
@@ -110,31 +130,31 @@ class Game:
         pg.quit()
         sys.exit()
 
-    def check_buttons(self, mouse_x, mouse_y):
+    def check_buttons(self):
         if not self.settings.game_active:
             if not self.settings.hs_active:
-                self.check_hs_button(mouse_x, mouse_y)
-                self.check_play_button(mouse_x, mouse_y)
+                self.check_hs_button()
+                self.check_play_button()
             else:
-                self.check_back_button(mouse_x, mouse_y)
+                self.check_back_button()
 
-    def check_back_button(self, mouse_x, mouse_y):
-        button_clicked = self.back_button.rect.collidepoint(mouse_x, mouse_y)
+    def check_back_button(self):
+        button_clicked = self.back_button.rect.collidepoint(pg.mouse.get_pos()[0], pg.mouse.get_pos()[1])
         if button_clicked:
             self.scoreboard.reset()
             self.settings.hs_active = False
 
-    def check_hs_button(self, mouse_x, mouse_y):
-        button_clicked = self.hs_button.rect.collidepoint(mouse_x, mouse_y)
+    def check_hs_button(self):
+        button_clicked = self.hs_button.rect.collidepoint(pg.mouse.get_pos()[0], pg.mouse.get_pos()[1])
         if button_clicked:
             self.scoreboard.reset()
             self.settings.hs_active = True
 
-    def check_play_button(self, mouse_x, mouse_y):
-        button_clicked = self.play_button.rect.collidepoint(mouse_x, mouse_y)
+    def check_play_button(self):
+        button_clicked = self.play_button.rect.collidepoint(pg.mouse.get_pos()[0], pg.mouse.get_pos()[1])
         if button_clicked:
             self.maze.populate_maze()
-            self.settings.init_speeds()
+            # self.settings.init_speeds()
             self.sound.play_bg()
             pg.mouse.set_visible(False)
 
@@ -145,6 +165,7 @@ class Game:
             
 
     def update_screen(self):
+        
 
         if not self.settings.game_active:
             # self.space_text.draw_button()
@@ -165,6 +186,9 @@ class Game:
             self.screen.fill(self.settings.black)
             self.handle_events()
             self.update_screen()
+            # print(self.pacman.rect.x)
+            # print(self.pacman.rect.y)
+            # print()
             if self.settings.game_active:
                 self.ghosts.update()
                 self.pacman.update()

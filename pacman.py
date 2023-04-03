@@ -31,13 +31,19 @@ class Pacman:
             self.y -= self.game.settings.pacmanspeed
         if self.down:
             self.y += self.game.settings.pacmanspeed
+        
+
+        if(self.x<=2):
+            self.x = 580
+        elif(self.x>=600):
+            self.x = 10
+
         self.rect.x = self.x
         self.rect.y = self.y
 
         self.draw()
 
     def rotate(self, degree=0):
-        print(degree)
         self.imgs = [pg.image.load('images/pacman/sprite_0.png'),
                      pg.image.load('images/pacman/sprite_1.png'),
                      pg.image.load('images/pacman/sprite_2.png'),

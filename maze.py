@@ -76,7 +76,7 @@ class Maze:
         for wall in self.game.walls:
             if pg.sprite.collide_rect(self.game.pacman, wall):
                 self.check_pacman_wall_collisions(wall)
-            for ghost in self.game.ghosts.ghost_list:
+            for ghost in self.game.ghosts.ghosts:
                 if pg.sprite.collide_rect(ghost, wall):
                     directions = ["Up", "Down", "Left", "Right"]
                     ghost.direction = directions[random.randint(0,3)]

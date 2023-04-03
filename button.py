@@ -19,6 +19,7 @@ class Button():
         self.rect.centery = self.screen_rect.centery + offsety
 
         # The button message needs to be prepped only once.
+        self.button_msg = msg
         self.prep_msg(msg)
 
     def prep_msg(self, msg):
@@ -31,3 +32,19 @@ class Button():
         # Draw blank button and then draw message.
         self.screen.fill(self.button_color, self.rect)
         self.screen.blit(self.msg_image, self.msg_image_rect)
+
+    def hover_on(self):
+        self.button_color = (255,0,0)
+        self.msg_image = self.font.render(self.button_msg, True, self.text_color,
+        self.button_color)
+        self.msg_image_rect = self.msg_image.get_rect()
+        self.msg_image_rect.center = self.rect.center
+        self.draw_button()
+
+    def hover_off(self):
+        self.button_color = (0,255,0)
+        self.msg_image = self.font.render(self.button_msg, True, self.text_color,
+        self.button_color)
+        self.msg_image_rect = self.msg_image.get_rect()
+        self.msg_image_rect.center = self.rect.center
+        self.draw_button()

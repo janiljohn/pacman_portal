@@ -6,14 +6,20 @@ class Ghosts:
     def __init__(self, game):
         self.game = game
         self.ghosts = Group()
-        self.ghost_list = [Blinky(game=game), Inky(game=game), 
-                           Pinky(game=game), Clyde(game=game)]
-        for ghost in self.ghost_list:
-            self.ghosts.add(ghost)
+        # self.ghost_list = [Blinky(game=game), Inky(game=game), 
+        #                    Pinky(game=game), Clyde(game=game)]
+        # for ghost in self.ghost_list:
+        #     self.ghosts.add(ghost)
+
+        self.ghosts.add(Blinky(game=game))
+        self.ghosts.add(Inky(game=game))
+        self.ghosts.add(Pinky(game=game))
+        self.ghosts.add(Clyde(game=game))
 
     def update(self): 
         for ghost in self.ghosts:
-            ghost.update()
+            if pg.time.get_ticks()>3500:
+                ghost.update()
         self.draw()
 
     def draw(self): 
@@ -51,7 +57,21 @@ class Blinky(Ghost):
         self.up, self.down, self.left, self.right = False, False, False, False
         self.direction = "Right"
 
-    def update(self): pass
+    def update(self):
+        if self.direction=="Right":
+            self.x += 5
+        if self.direction=="Left":
+            self.x -= 5
+        if self.direction=="Up":
+            self.y -= 5
+        if self.direction=="Down":
+            self.y += 5
+
+        self.rect.x %= 560
+        self.rect.y %= 600
+        # print(self.x)
+        # self.draw()
+        
     def draw(self):
         time = pg.time.get_ticks()%200
         if time <= 50:
@@ -86,7 +106,19 @@ class Inky(Ghost):
         self.up, self.down, self.left, self.right = False, False, False, False
         self.direction = "Right"
 
-    def update(self): pass
+    def update(self):
+        if self.direction=="Right":
+            self.x += 1
+        if self.direction=="Left":
+            self.x -= 1
+        if self.direction=="Up":
+            self.y -= 1
+        if self.direction=="Down":
+            self.y += 1
+
+        self.rect.x %= 560
+        self.rect.y %= 600
+
     def draw(self):
         time = pg.time.get_ticks()%200
         if time <= 50:
@@ -121,7 +153,19 @@ class Pinky(Ghost):
         self.up, self.down, self.left, self.right = False, False, False, False
         self.direction = "Right"
 
-    def update(self): pass
+    def update(self):
+        if self.direction=="Right":
+            self.rect.x += 1
+        if self.direction=="Left":
+            self.rect.x -= 1
+        if self.direction=="Up":
+            self.rect.y -= 1
+        if self.direction=="Down":
+            self.rect.y += 1
+
+        self.rect.x %= 560
+        self.rect.y %= 600
+    
     def draw(self):
         time = pg.time.get_ticks()%200
         if time <= 50:
@@ -152,7 +196,21 @@ class Clyde(Ghost):
         self.up, self.down, self.left, self.right = False, False, False, False
         self.direction = "Right"
 
-    def update(self): pass
+    def update(self):
+        if self.direction=="Right":
+            self.x += 1
+        if self.direction=="Left":
+            self.x -= 1
+        if self.direction=="Up":
+            self.y -= 1
+        if self.direction=="Down":
+            self.y += 1
+
+        self.rect.x %= 560
+        self.rect.y %= 600
+
+        # print(self.rect.x)
+
     def draw(self):
         time = pg.time.get_ticks()%200
         if time <= 50:
