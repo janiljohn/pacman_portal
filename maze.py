@@ -77,7 +77,7 @@ class Maze:
             if pg.sprite.collide_rect(self.game.pacman, wall):
                 self.check_pacman_wall_collisions(wall)
         for shield in self.game.shield:
-            if pg.sprite.collide_rect(self.game.pacman, shield):
+            if pg.sprite.collide_rect(self.game.pacman, shield) and pg.time.get_ticks()<3500:
                 self.check_pacman_shield_collisions(shield)
         for food in self.game.food:
             if pg.sprite.collide_rect(self.game.pacman, food):

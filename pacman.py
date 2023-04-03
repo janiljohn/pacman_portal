@@ -15,10 +15,6 @@ class Pacman:
         self.rect.left -= self.rect.width
         self.rect.top -= self.rect.height
 
-        # self.coor = (300, 500)
-        # self.rect.x = self.coor[0]
-        # self.rect.y = self.coor[1]
-
         self.x, self.y = 300, 500
         self.rect.x = self.x
         self.rect.y = self.y
@@ -29,20 +25,12 @@ class Pacman:
     def update(self):
         if self.right:
             self.x += self.game.settings.pacmanspeed
-            # self.rotate = 0
-            # self.rotate(degree=0)
         if self.left:
             self.x -= self.game.settings.pacmanspeed
-            # self.rotate = 180
-            # self.rotate(degree=180)
         if self.up:
             self.y -= self.game.settings.pacmanspeed
-            # self.rotate = 270
-            # self.rotate(degree=270)
         if self.down:
             self.y += self.game.settings.pacmanspeed
-            # self.rotate = 90
-            # self.rotate(degree=90)
         self.rect.x = self.x
         self.rect.y = self.y
 

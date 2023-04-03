@@ -87,7 +87,6 @@ class Game:
                     sys.exit()
 
 
-
     def game_over(self):
         # self.sound.gameover()
         pg.quit()
@@ -111,8 +110,9 @@ class Game:
             # self.scoreboard.update()
             for wall in self.walls:
                 wall.draw()
-            for el in self.shield:
-                el.draw()
+            if(pg.time.get_ticks()<3500):
+                for el in self.shield:
+                    el.draw()
             for el in self.food:
                 el.draw()
             for el in self.portal:
