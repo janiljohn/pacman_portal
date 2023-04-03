@@ -7,36 +7,43 @@ class HighScore:
         self.screen = game.screen
         self.settings = game.settings
         self.screen_rect = self.screen.get_rect()
-        self.images = []
+        self.score_list = []
         self.prep_strings()
 
     
     def prep_strings(self):
         
-        self.prep_Text("HIGH SCORE", 150, offsetY=40)
+        self.prep_Text("High Scores:", 125, offsetY=40)
         
-        strings  = [f"{x}.    Score: " + str(self.game.disk[f"hs_{x}_score"]) 
-                        + ",  Level: " + str(self.game.disk[f"hs_{x}_level"]) for x in range (1,4) ]
+        str1 = "1. Score: " + str(self.game.disk[f"hs_{1}_score"]) + "    Level: " + str(self.game.disk[f"hs_{1}_level"])
+        str2 = "2. Score: " + str(self.game.disk[f"hs_{2}_score"]) + "    Level: " + str(self.game.disk[f"hs_{2}_level"])
+        str3 = "3. Score: " + str(self.game.disk[f"hs_{3}_score"]) + "    Level: " + str(self.game.disk[f"hs_{3}_level"])
 
-        self.prep_Text(strings[0], 90,  offsetY=200)
-        self.prep_Text(strings[1], 70, offsetY=300)
-        self.prep_Text(strings[2], 70, offsetY=400)
+        display_texts = []
+        display_texts.append(str1)
+        display_texts.append(str2)
+        display_texts.append(str3)
+
+        self.prep_Text(display_texts[0], 80, offsetY=200)
+        self.prep_Text(display_texts[1], 80, offsetY=300)
+        self.prep_Text(display_texts[2], 80, offsetY=400)
     
 
-    def prep_Text(self, msg, size, color=(255,255,255), offsetX=0, offsetY=0):
+    def prep_Text(self, msg, size, color=(20,100,255), offsetX=50, offsetY=0):
         font = pg.font.SysFont(None, size)
         text_image = font.render(msg, True, color, self.settings.bg_color)
         rect = text_image.get_rect()
-        if offsetY == 0:
-            rect.centery = self.screen_rect.centery
-        else:
-            rect.top = offsetY
+        
         if offsetX == 0:
             rect.centerx = self.screen_rect.centerx
         else:
             rect.left = offsetX
+        if offsetY == 0:
+            rect.centery = self.screen_rect.centery
+        else:
+            rect.top = offsetY
 
-        self.images.append((text_image,rect))
+        self.score_list.append((text_image,rect))
 
     def reset(self):
         self.images = []
@@ -46,5 +53,5 @@ class HighScore:
         self.draw()
 
     def draw(self):
-        for image in self.images:
+        for image in self.score_list:
             self.screen.blit(image[0], image[1])

@@ -9,30 +9,26 @@ class Scoreboard:
         self.d = game.disk
         self.read_disk()
 
-        self.settings = game.settings
+        
         self.screen = game.screen
+        self.settings = game.settings
         self.screen_rect = self.screen.get_rect()
 
-        self.text_color = (250, 250, 250)
+        
         self.font_type = pg.font.SysFont(None, 48)
+        self.text_color = (250, 250, 250)
 
-        self.score_image = None 
         self.score_rect = None
+        self.score_image = None 
         self.prep_score()
 
-        self.level_image = None 
         self.level_rect = None
+        self.level_image = None 
         self.prep_level()
 
         self.next_level()
 
-    def read_disk(self):
-        self.hs_1 = self.d["hs_1_score"]
-        self.hs_1_lvl = self.d["hs_1_level"]
-        self.hs_2 = self.d["hs_2_score"]
-        self.hs_2_lvl = self.d["hs_2_level"]
-        self.hs_3 = self.d["hs_3_score"]
-        self.hs_3_lvl = self.d["hs_3_level"]
+    
 
     def update_disk(self):
         if self.curr_score > self.hs_1:
@@ -50,6 +46,16 @@ class Scoreboard:
         elif self.curr_score > self.hs_3:
             self.d["hs_3_score"] = self.curr_score
             self.d["hs_3_level"] = self.curr_level
+
+
+    def read_disk(self):
+        self.hs_1 = self.d["hs_1_score"]
+        self.hs_1_lvl = self.d["hs_1_level"]
+        self.hs_2 = self.d["hs_2_score"]
+        self.hs_2_lvl = self.d["hs_2_level"]
+        self.hs_3 = self.d["hs_3_score"]
+        self.hs_3_lvl = self.d["hs_3_level"]
+    
 
     def increment_score(self): 
         self.curr_score += self.settings.food_points

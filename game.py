@@ -15,15 +15,6 @@ import shelve
 
 from pygame.sprite import Sprite, Group
 
-# d = shelve.open('score.txt')  
-# d['score'] = 0            
-# d['hs_1_score'] = 0           
-# d['hs_1_level'] = 1      
-# d['hs_2_score'] = 0           
-# d['hs_2_level'] = 1     
-# d['hs_3_score'] = 0           
-# d['hs_3_level'] = 1             
-# d.close()
 
 class Game:
     def __init__(self):
@@ -35,9 +26,9 @@ class Game:
         pg.display.set_caption("Pacman Portal")
 
         self.sound = Sound(bg_music="sounds/startrek.wav")
-        self.play_button = Button( "Play", game=self, offsety=200)
-        self.hs_button = Button( "High Score", game=self, offsety=280)
-        self.back_button = Button( "Back", game=self, offsety=280)
+        self.play_button = Button( "Play", game=self, movey=200)
+        self.hs_button = Button( "High Score", game=self, movey=280)
+        self.back_button = Button( "Back", game=self, movey=280)
         self.hs = HighScore(game=self)
         self.scoreboard = Scoreboard(game=self)
 
