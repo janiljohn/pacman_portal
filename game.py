@@ -41,11 +41,6 @@ class Game:
 
         self.portal_pairs = dict()
 
-        # self.portal_pairs.add((self.portal_list[0].rect.x,self.portal_list[0].rect.y), (self.portal_list[2].rect.x,self.portal_list[2].rect.y-2))
-        # self.portal_pairs.append(self.portal_list[0], (self.portal_list[2].rect.x,self.portal_list[2].rect.y-2))
-        
-
-
         self.maze.populate_maze()
 
         self.portal_pairs["Portal_0"] = (126,614)
@@ -76,12 +71,16 @@ class Game:
             elif event.type == pg.KEYDOWN:
                 if event.key == pg.K_UP:
                     self.pacman.up = True
+                    self.pacman.rotate(90)
                 elif event.key == pg.K_DOWN:
                     self.pacman.down = True
+                    self.pacman.rotate(270)
                 elif event.key == pg.K_RIGHT:
                     self.pacman.right = True
+                    self.pacman.rotate(0)
                 elif event.key == pg.K_LEFT:
                     self.pacman.left = True
+                    self.pacman.rotate(180)
                 elif event.key == pg.K_SPACE:
                     pass
                 elif event.key == pg.K_QUIT:
@@ -97,9 +96,6 @@ class Game:
     def play(self):
         # self.sound.play_bg()
         while True:
-            # print(self.pacman.x)
-            # print(self.pacman.y)
-            # print()
             self.screen.fill(self.settings.black)
             self.handle_events()
             # self.screen.fill(self.settings.bg_color)
@@ -121,23 +117,9 @@ class Game:
                 el.draw()
             for el in self.portal:
                 el.draw()
+            # if(pg.time.get_ticks()>2000):
+            #     self.shield.remove()
             pg.display.flip()
-
-
-            # self.screen.fill(self.settings.black)
-            # self.handle_events()
-            # self.maze.check_collisions()
-            # self.pacman.update()
-            # for wall in self.walls:
-            #     wall.draw()
-            # for el in self.shield:
-            #     el.draw()
-            # for el in self.food:
-            #     el.draw()
-            # for el in self.portal:
-            #     el.draw()
-            # self.pacman.draw()
-            # pg.display.flip()
 
 
 def main():

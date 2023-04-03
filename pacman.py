@@ -29,17 +29,35 @@ class Pacman:
     def update(self):
         if self.right:
             self.x += self.game.settings.pacmanspeed
+            # self.rotate = 0
+            # self.rotate(degree=0)
         if self.left:
             self.x -= self.game.settings.pacmanspeed
+            # self.rotate = 180
+            # self.rotate(degree=180)
         if self.up:
             self.y -= self.game.settings.pacmanspeed
+            # self.rotate = 270
+            # self.rotate(degree=270)
         if self.down:
             self.y += self.game.settings.pacmanspeed
-
+            # self.rotate = 90
+            # self.rotate(degree=90)
         self.rect.x = self.x
         self.rect.y = self.y
 
         self.draw()
+
+    def rotate(self, degree=0):
+        print(degree)
+        self.imgs = [pg.image.load('images/pacman/sprite_0.png'),
+                     pg.image.load('images/pacman/sprite_1.png'),
+                     pg.image.load('images/pacman/sprite_2.png'),
+                     pg.image.load('images/pacman/sprite_3.png')]
+        for x in range(0, 4):
+            self.imgs[x] = pg.transform.scale(self.imgs[x], (self.size[0], self.size[1]))
+        for x in range(0, 4):
+            self.imgs[x] = pg.transform.rotate(self.imgs[x], degree)
         
     def draw(self):
         time = pg.time.get_ticks()%200

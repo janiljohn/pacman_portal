@@ -44,11 +44,7 @@ class Blinky(Ghost):
         self.rect.left -= self.rect.width
         self.rect.top -= self.rect.height
 
-        # self.coor = (300, 500)
-        # self.rect.x = self.coor[0]
-        # self.rect.y = self.coor[1]
-
-        self.x, self.y = 250, 450
+        self.x, self.y = 263, 289
         self.rect.x = self.x
         self.rect.y = self.y
 
@@ -83,7 +79,7 @@ class Inky(Ghost):
         # self.rect.x = self.coor[0]
         # self.rect.y = self.coor[1]
 
-        self.x, self.y = 200, 400
+        self.x, self.y = 263+27+3, 289
         self.rect.x = self.x
         self.rect.y = self.y
 
@@ -118,7 +114,7 @@ class Pinky(Ghost):
         # self.rect.x = self.coor[0]
         # self.rect.y = self.coor[1]
 
-        self.x, self.y = 150, 350
+        self.x, self.y = 263+27+27+3, 289
         self.rect.x = self.x
         self.rect.y = self.y
 
@@ -149,11 +145,7 @@ class Clyde(Ghost):
         self.rect.left -= self.rect.width
         self.rect.top -= self.rect.height
 
-        # self.coor = (300, 500)
-        # self.rect.x = self.coor[0]
-        # self.rect.y = self.coor[1]
-
-        self.x, self.y = 100, 300
+        self.x, self.y = 263+27+27+27+3, 289
         self.rect.x = self.x
         self.rect.y = self.y
 

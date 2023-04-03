@@ -52,8 +52,8 @@ class Maze:
                     (self.game.food).add(new_fruit)
                 elif el == 'o':
                     new_shield = Shield(self.game)
-                    new_shield.rect.x = 13 * offset_horizontal
-                    new_shield.rect.y = 13 * offset_vertical
+                    new_shield.rect.x = 12.7 * offset_horizontal
+                    new_shield.rect.y = 12.5 * offset_vertical
                     (self.game.shield).add(new_shield)
                 elif el == 'h':
                     pass
@@ -85,13 +85,7 @@ class Maze:
                 (self.game.food).remove(food)
         for portal in self.game.portal:
             if pg.sprite.collide_rect(self.game.pacman, portal):
-                print(self.game.pacman.rect.x)
-                print(self.game.pacman.rect.y)
-                print()
                 if self.game.pacman.rect.x>=536 and self.game.pacman.rect.x<=580:
-                    print("HI")
-                    print(self.game.portal_pairs["Portal_0"][0])
-                    print(self.game.portal_pairs["Portal_0"][1])
                     self.game.pacman.x = self.game.portal_pairs["Portal_0"][0]
                     self.game.pacman.y = self.game.portal_pairs["Portal_0"][1]
                 elif self.game.pacman.rect.x>=20 and self.game.pacman.rect.x<=91:
